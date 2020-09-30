@@ -7,6 +7,17 @@ export class MyWeb extends Component {
       <WebView
         source={{uri: 'https://rn-app-data-exchange.netlify.app/'}}
         // style={{marginTop: 20}}
+        ref={(webView) => (this.webView = webView)}
+        onMessage={(event) => {
+          const {data} = event.nativeEvent;
+          const clientResponseCode = `
+      window.postMessage(${JSON.stringify(data)}, "*");
+      true;
+    `;
+          if (this.webView) {
+            this.webView.injectJavaScript(clientResponseCode);
+          }
+        }}
       />
     );
   }

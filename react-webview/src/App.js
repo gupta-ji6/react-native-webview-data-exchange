@@ -3,6 +3,12 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  window.addEventListener('message', (message) => {
+    document.getElementById('newStuff').innerHTML += `</br>${message.data}`;
+  });
+
+  window.ReactNativeWebView.postMessage("Hello React Native!");
+
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +24,7 @@ function App() {
         >
           Learn React
         </a>
+        <p id="newStuff"></p>
       </header>
     </div>
   );

@@ -4,10 +4,11 @@ import './App.css';
 
 function App() {
   window.addEventListener('message', (message) => {
+    console.log(message);
     document.getElementById('newStuff').innerHTML += `</br>${message.data}`;
   });
 
-  window.ReactNativeWebView.postMessage("Hello React Native!");
+  window.ReactNativeWebView.postMessage("This is working!");
 
   return (
     <div className="App">
